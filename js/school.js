@@ -413,7 +413,7 @@
         wrap.className = 'icon';
         if (item.type === 'book' && bookImgLoaded) {
           const img = document.createElement('img');
-          img.src = '/images/book.png';
+          img.src = '../images/book.png';
           img.alt = 'book';
           wrap.appendChild(img);
         } else {
