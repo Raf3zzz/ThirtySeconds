@@ -586,3 +586,44 @@
       0%, 100% { text-shadow: 1px 1px 0 #6080aa, 0 0 8px rgba(255, 215, 0, 0.3); }
       50% { text-shadow: 1px 1px 0 #6080aa, 0 0 16px rgba(255, 215, 0, 0.6); }
     }
+/* UI più piccola solo su schermi piccoli (smartphone) */
+@media (max-width: 768px) {
+  .hud-hearts .unit,
+  .hud-energy .unit {
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+  }
+
+  .hud-coins-container {
+    padding: 6px 8px;
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  .hotbar .slot,
+  .hotbar-mini .slot {
+    width: 48px;
+    height: 48px;
+  }
+
+  .hotbar .slot .icon img,
+  .hotbar-mini .slot img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .inventory-btn,
+  .inventory-btn-game,
+  .action-btn,
+  .move-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .dpad {
+    width: 160px;
+    height: 160px;
+  }
+}
