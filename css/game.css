@@ -12,7 +12,7 @@
     }
     @font-face {
       font-family: 'Joystix';
-      src: url('/fonts/joystix monospace.otf') format('opentype');
+      src: url('../fonts/joystix monospace.otf') format('opentype');
     }
     * { font-family: 'Joystix', ui-monospace, Menlo, Monaco, 'Cascadia Mono', monospace; }
     .game-wrapper { 
@@ -516,20 +516,20 @@
       position: relative; 
     }
     .hud-hearts .unit { 
-      background: url('/images/cuore.png') no-repeat center center;
+      background: url('../images/cuore.png') no-repeat center center;
       background-size: contain;
       border: none;
       opacity: 1;
       box-shadow: none;
     }
     .hud-hearts .unit.empty { 
-      background: url('/images/cuore.png') no-repeat center center;
+      background: url('../images/cuore.png') no-repeat center center;
       background-size: contain;
       opacity: 0.35;
       box-shadow: none;
     }
     .hud-energy .unit { 
-      background: url('/images/fulmine.png') no-repeat center center;
+      background: url('../images/fulmine.png') no-repeat center center;
       background-size: contain;
       border: none;
       opacity: 1;
@@ -538,7 +538,7 @@
       height: 24px;
     }
     .hud-energy .unit.empty { 
-      background: url('/images/fulmine.png') no-repeat center center;
+      background: url('../images/fulmine.png') no-repeat center center;
       background-size: contain;
       opacity: 0.35;
       box-shadow: none;
@@ -577,7 +577,7 @@
       display: inline-block;
       width: 24px;
       height: 24px;
-      background-image: url('/images/coin.png');
+      background-image: url('../images/coin.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;

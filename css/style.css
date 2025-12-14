@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: 'Trends';
-  src: url('/fonts/Trends.ttf') format('truetype');
+  src: url('../fonts/Trends.ttf') format('truetype');
   font-display: swap;
 }
 
@@ -30,7 +30,7 @@ body {
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url('/images/background.png');
+  background-image: url('../images/background.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
