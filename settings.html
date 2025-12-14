@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thirty Seconds - Impostazioni</title>
+</head>
+<body>
+<div class="page-container">
+  <div class="glass-card">
+    <a href="/index.html"><button class="back-btn-top" id="settings-back-btn">← Indietro</button></a>
+    <h2 class="page-title">Impostazioni</h2>
+    <div class="settings-content">
+      <div class="setting-item">
+        <label for="master-volume">Volume Generale</label>
+        <div class="slider-container">
+          <span class="slider-icon">🔊</span>
+          <input type="range" id="master-volume" class="slider" min="0" max="100" value="70">
+          <span class="volume-value" id="master-volume-value">70%</span>
+        </div>
+      </div>
+      <div class="setting-item">
+        <label for="music-volume">Musica</label>
+        <div class="slider-container">
+          <span class="slider-icon">🎵</span>
+          <input type="range" id="music-volume" class="slider" min="0" max="100" value="50">
+          <span class="volume-value" id="music-volume-value">50%</span>
+        </div>
+      </div>
+      <div class="setting-item">
+        <label for="sfx-volume">Effetti Sonori</label>
+        <div class="slider-container">
+          <span class="slider-icon">🔔</span>
+          <input type="range" id="sfx-volume" class="slider" min="0" max="100" value="80">
+          <span class="volume-value" id="sfx-volume-value">80%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>

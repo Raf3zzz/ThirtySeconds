@@ -1,0 +1,588 @@
+    :root {
+      --panel-bg: #1a1a2e;
+      --panel-border: #7090b0;
+      --slot-bg: #262d42;
+      --slot-border: #6080aa;
+      --btn-green: #5a9080;
+      --btn-blue: #5080a0;
+      --text: #e0e0e8;
+      --primary-blue: #7090b0;
+      --light-blue: rgba(112, 144, 192, 0.5);
+      --lighter-blue: rgba(112, 144, 192, 0.8);
+    }
+    @font-face {
+      font-family: 'Joystix';
+      src: url('/fonts/joystix monospace.otf') format('opentype');
+    }
+    * { font-family: 'Joystix', ui-monospace, Menlo, Monaco, 'Cascadia Mono', monospace; }
+    .game-wrapper { 
+      position: relative; 
+      width: 100vw; 
+      height: 100vh; 
+      overflow: hidden;
+      background: linear-gradient(135deg, #2a1a4a 0%, #1a2a4a 50%, #2a1a3a 100%);
+    }
+    canvas { 
+      display: block; 
+      width: 100%; 
+      height: 100%; 
+      background: linear-gradient(135deg, #2a1a4a 0%, #1a2a4a 50%, #2a1a3a 100%); 
+      image-rendering: pixelated; 
+    }
+    .back-btn-top { 
+      position:absolute; 
+      left:16px; 
+      top:64px; 
+      z-index:10; 
+      background: rgba(96, 128, 170, 0.6);
+      border: 2px solid #7090b0;
+      color: #e0e0e8;
+      padding: 8px 16px;
+      border-radius: 0;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      transition: all 0.2s ease;
+    }
+    .back-btn-top:hover {
+      background: rgba(112, 144, 192, 0.7);
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 2px 0 rgba(120, 80, 160, 0.3);
+    }
+    /* Touch controls */
+    .touch-controls { position: absolute; inset: 0; pointer-events: none; }
+    .dpad { position: absolute; left: 20px; bottom: 20px; width: 220px; height: 220px; pointer-events: auto; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; gap: 8px; }
+    .pad-btn { 
+      background: linear-gradient(135deg, #5a7a9a, #4a6a8a);
+      border: 2px solid #7090b0;
+      border-radius: 0;
+      color: var(--text); 
+      font-size: 16px; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      user-select:none; 
+      -webkit-user-select:none; 
+      touch-action:none; 
+      box-shadow: 0 3px 0 rgba(20, 30, 50, 0.6), 0 0 10px rgba(112, 144, 192, 0.2);
+      transition: all 0.1s ease;
+    }
+    .pad-btn:active { 
+      transform: translateY(2px); 
+      box-shadow: 0 1px 0 rgba(20, 30, 50, 0.6); 
+    }
+    .pad-btn.active { 
+      background: linear-gradient(135deg, #6a8aaa, #5a7a9a);
+      border-color: #7aa0c0;
+      box-shadow: 0 0 15px rgba(112, 144, 192, 0.4);
+    }
+    .pad-empty { pointer-events: none; opacity: 0; }
+    .dash-btn {
+      background: linear-gradient(135deg, #6a8aaa, #5a7a9a);
+      border: 2px solid #7090b0 !important;
+      font-weight: 800;
+      animation: dashPulse 0.8s ease-in-out infinite;
+      box-shadow: 0 3px 0 rgba(20, 30, 50, 0.6), 0 0 10px rgba(112, 144, 192, 0.3) !important;
+    }
+    .dash-btn:active {
+      animation: none;
+      background: linear-gradient(135deg, #7a9aaa, #6a8a9a) !important;
+    }
+    @keyframes dashPulse {
+      0%, 100% { box-shadow: 0 3px 0 rgba(20, 30, 50, 0.6), 0 0 10px rgba(112, 144, 192, 0.2); }
+      50% { box-shadow: 0 3px 0 rgba(20, 30, 50, 0.6), 0 0 15px rgba(112, 144, 192, 0.5); }
+    }
+    .action-btn { 
+      position: absolute; 
+      right: 26px; 
+      bottom: 36px; 
+      width: 96px; 
+      height: 96px; 
+      border-radius: 0;
+      background: linear-gradient(135deg, #5a7a9a, #4a6a8a);
+      color: var(--text); 
+      font-weight: 700; 
+      border: 2px solid #7090b0;
+      pointer-events: auto; 
+      box-shadow: 0 4px 0 rgba(20, 30, 50, 0.5), 0 0 15px rgba(112, 144, 192, 0.2);
+      transition: all 0.1s ease;
+    }
+    .action-btn:active { 
+      transform: translateY(2px); 
+      box-shadow: 0 2px 0 rgba(20, 30, 50, 0.5), 0 0 10px rgba(112, 144, 192, 0.2); 
+    }
+    .move-btn { 
+      position: absolute; 
+      right: 130px; 
+      bottom: 58px; 
+      width: 84px; 
+      height: 84px; 
+      border-radius: 0;
+      background: linear-gradient(135deg, #5a7a9a, #4a6a8a);
+      color: var(--text); 
+      font-weight: 700; 
+      border: 2px solid #7090b0;
+      pointer-events: auto; 
+      box-shadow: 0 4px 0 rgba(20, 30, 50, 0.5), 0 0 15px rgba(112, 144, 192, 0.2);
+      transition: all 0.1s ease;
+    }
+    .move-btn:active { 
+      transform: translateY(2px); 
+      box-shadow: 0 2px 0 rgba(20, 30, 50, 0.5), 0 0 10px rgba(112, 144, 192, 0.2); 
+    }
+    .inventory-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 60px;
+      height: 60px;
+      border-radius: 0;
+      background: linear-gradient(135deg, #5a7a9a, #4a6a8a);
+      color: var(--text);
+      font-weight: 700;
+      border: 2px solid #7090b0;
+      pointer-events: auto;
+      box-shadow: 0 4px 0 rgba(20, 30, 50, 0.5), 0 0 15px rgba(112, 144, 192, 0.2);
+      transition: all 0.1s ease;
+      font-size: 20px;
+      z-index: 1000;
+    }
+    .inventory-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 rgba(20, 30, 50, 0.5), 0 0 10px rgba(112, 144, 192, 0.2);
+    }
+    .inventory-btn-game {
+      position: absolute;
+      right: 234px;
+      bottom: 80px;
+      width: 72px;
+      height: 72px;
+      border-radius: 0;
+      background: linear-gradient(135deg, #5a7a9a, #4a6a8a);
+      color: var(--text);
+      font-weight: 700;
+      border: 2px solid #7090b0;
+      pointer-events: auto;
+      box-shadow: 0 4px 0 rgba(20, 30, 50, 0.5), 0 0 15px rgba(112, 144, 192, 0.2);
+      transition: all 0.1s ease;
+      font-size: 24px;
+      z-index: 1000;
+    }
+    .inventory-btn-game:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 rgba(20, 30, 50, 0.5), 0 0 10px rgba(112, 144, 192, 0.2);
+    }
+
+    /* Hotbar */
+    .hotbar { 
+      position: absolute; 
+      bottom: 24px; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      display:flex; 
+      gap: 10px; 
+      background: rgba(26, 26, 46, 0.8);
+      padding: 10px; 
+      border-radius: 0;
+      border: 2px solid #7090b0;
+      box-shadow: 0 4px 0 rgba(20, 30, 50, 0.5), 0 0 15px rgba(112, 144, 192, 0.2);
+    }
+    .hotbar .slot { 
+      width: 72px; 
+      height:72px; 
+      background: var(--slot-bg); 
+      border: 2px solid var(--slot-border); 
+      border-radius: 0;
+      position: relative; 
+      overflow: hidden; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      transition: all 0.2s ease;
+    }
+    .hotbar .slot:hover {
+      box-shadow: 0 0 10px rgba(112, 144, 192, 0.3);
+    }
+    .hotbar .slot.active { 
+      outline: 2px solid rgba(112, 144, 192, 0.8);
+      box-shadow: 0 0 12px rgba(112, 144, 192, 0.4) inset; 
+    }
+    .hotbar .slot .num { 
+      position: absolute; 
+      left: 6px; 
+      top: 4px; 
+      color: rgba(224, 224, 232, 0.7);
+      font-size: 10px; 
+    }
+    .hotbar .slot .icon { 
+      width: 64px; 
+      height: 64px; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      image-rendering: pixelated; 
+    }
+    .hotbar .slot .icon img { 
+      width: 64px; 
+      height: 64px; 
+      image-rendering: pixelated; 
+    }
+
+    /* Hotbar name overlay */
+    .hotbar-name { 
+      position: absolute; 
+      left: 50%; 
+      bottom: 110px; 
+      transform: translateX(-50%); 
+      background: rgba(26, 26, 46, 0.85);
+      color: #e0e0e8; 
+      padding: 6px 10px; 
+      border-radius: 0;
+      border: 2px solid #7090b0;
+      font-size: 12px; 
+      opacity: 0; 
+      pointer-events: none; 
+      transition: opacity 300ms ease; 
+      box-shadow: 0 3px 0 rgba(20, 30, 50, 0.5);
+    }
+    .hotbar-name.show { opacity: 1; }
+
+    /* Inventory panel */
+    .inventory-panel { 
+      position: absolute; 
+      inset: 0; 
+      display: grid; 
+      place-items: center; 
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 10000;
+    }
+    .inventory-panel[hidden] {
+      display: none !important;
+    }
+    .inventory-modal { 
+      position: absolute; 
+      inset: 0; 
+      display: grid; 
+      place-items: center; 
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .inventory-card { 
+      width: min(680px, 90vw); 
+      background: var(--panel-bg);
+      border: 2px solid var(--panel-border); 
+      border-radius: 0;
+      padding: 16px; 
+      box-shadow: 0 6px 0 rgba(20, 30, 50, 0.6), 0 0 20px rgba(112, 144, 192, 0.2);
+      color: var(--text); 
+    }
+    .inventory-header { 
+      display:flex; 
+      align-items:center; 
+      justify-content: space-between; 
+      margin-bottom: 12px; 
+    }
+    .inventory-header h3 { 
+      margin: 0; 
+      color: #a0c8e0;
+      font-size: 16px;
+    }
+    .inventory-header button { 
+      padding: 8px 12px; 
+      border-radius: 0;
+      background: linear-gradient(135deg, #4a5a7a, #3a4a6a);
+      color:#e0e0e8; 
+      border: 2px solid #7090b0;
+      box-shadow: 0 3px 0 rgba(20, 30, 50, 0.6);
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+    .inventory-header button:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 0 4px 0 rgba(20, 30, 50, 0.6);
+    }
+    .inventory-grid { 
+      display: grid; 
+      grid-template-columns: repeat(5, 1fr); 
+      gap: 10px; 
+    }
+    .inventory-grid .inv-slot { 
+      height: 64px; 
+      border-radius: 0;
+      background: var(--slot-bg); 
+      border: 2px solid var(--slot-border);
+      display:flex; 
+      align-items:center; 
+      justify-content:center; 
+      color:#e0e0e8; 
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .inventory-grid .inv-slot:hover {
+      box-shadow: 0 0 8px rgba(112, 144, 192, 0.3);
+    }
+    .inventory-grid .inv-slot img { 
+      width: 56px; 
+      height: 56px; 
+      image-rendering: pixelated; 
+    }
+    .inventory-grid .inv-slot .trash { 
+      position:absolute; 
+      top:4px; 
+      right:4px; 
+      font-size: 10px; 
+      line-height: 1; 
+      padding: 4px 6px; 
+      border-radius: 0;
+      background: #8a6a7a;
+      border: 2px solid #a080a0;
+      color: #e0e0e8; 
+      box-shadow: 0 2px 0 rgba(20, 30, 50, 0.5);
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+    .inventory-grid .inv-slot .trash:hover {
+      background: #9a7a8a;
+    }
+    .inventory-name { 
+      margin: 0 0 8px 0; 
+      min-height: 22px; 
+      color: #a0c8e0;
+      font-size: 12px; 
+      opacity: 0.9; 
+    }
+    .inventory-hint { 
+      margin-top: 10px; 
+      color: #8a9aaa;
+      font-size: 14px; 
+      opacity: 0.85; 
+    }
+
+    /* Skin Section */
+    .skin-cosmetics-wrapper {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--slot-border);
+    }
+    .skin-section {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .skin-section h4 {
+      margin: 0;
+      color: #a0c8e0;
+      font-size: 14px;
+    }
+    .skin-display {
+      width: 120px;
+      height: 180px;
+      background: var(--slot-bg);
+      border: 2px solid var(--slot-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;
+    }
+    .skin-display img {
+      width: 100px;
+      height: 150px;
+      image-rendering: pixelated;
+    }
+
+    /* Cosmetici Section */
+    .cosmetics-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cosmetics-section h4 {
+      margin: 0;
+      color: #a0c8e0;
+      font-size: 14px;
+    }
+    .cosmetics-slots {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .cosmetic-slot {
+      height: 80px;
+      background: var(--slot-bg);
+      border: 2px solid var(--slot-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cosmetic-slot:hover {
+      box-shadow: 0 0 8px rgba(112, 144, 192, 0.3);
+    }
+    .cosmetic-slot img {
+      width: 64px;
+      height: 64px;
+      image-rendering: pixelated;
+    }
+
+    /* Inventory Section */
+    .inventory-section {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--slot-border);
+    }
+    .inventory-section h4 {
+      margin: 0 0 8px 0;
+      color: #a0c8e0;
+      font-size: 14px;
+    }
+
+    /* Hotbar Mini Section */
+    .hotbar-section {
+      margin-bottom: 0;
+    }
+    .hotbar-section h4 {
+      margin: 0 0 8px 0;
+      color: #a0c8e0;
+      font-size: 14px;
+    }
+    .hotbar-mini {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .hotbar-mini .slot {
+      height: 64px;
+      background: var(--slot-bg);
+      border: 2px solid var(--slot-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #a0c8e0;
+      font-weight: 700;
+    }
+    .hotbar-mini .slot:hover {
+      box-shadow: 0 0 8px rgba(112, 144, 192, 0.3);
+    }
+    .hotbar-mini .slot.active {
+      background: rgba(112, 144, 192, 0.4);
+      border-color: #a0c8e0;
+      box-shadow: 0 0 12px rgba(112, 144, 192, 0.5);
+    }
+    .hotbar-mini .slot img {
+      width: 56px;
+      height: 56px;
+      image-rendering: pixelated;
+    }
+
+    /* HUD: hearts (health) and energy */
+    .hud-hearts-container { 
+      position: absolute; 
+      left: 16px; 
+      top: 16px; 
+      pointer-events: none; 
+      background: rgba(26, 26, 46, 0.7);
+      border-radius: 0;
+      padding: 8px;
+      border: 2px solid #6080aa;
+      box-shadow: 0 0 12px rgba(112, 144, 192, 0.2);
+    }
+    .hud-energy-container { 
+      position: absolute; 
+      right: 26px; 
+      top: 16px; 
+      pointer-events: none; 
+      background: rgba(26, 26, 46, 0.7);
+      border-radius: 0;
+      padding: 8px;
+      border: 2px solid #6080aa;
+      box-shadow: 0 0 12px rgba(112, 144, 192, 0.2);
+    }
+    .hud-row { 
+      display: flex; 
+      gap: 6px; 
+      padding: 4px; 
+    }
+    .hud-row .unit { 
+      width: 24px; 
+      height: 24px; 
+      position: relative; 
+    }
+    .hud-hearts .unit { 
+      background: url('/images/cuore.png') no-repeat center center;
+      background-size: contain;
+      border: none;
+      opacity: 1;
+      box-shadow: none;
+    }
+    .hud-hearts .unit.empty { 
+      background: url('/images/cuore.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.35;
+      box-shadow: none;
+    }
+    .hud-energy .unit { 
+      background: url('/images/fulmine.png') no-repeat center center;
+      background-size: contain;
+      border: none;
+      opacity: 1;
+      box-shadow: none;
+      width: 24px;
+      height: 24px;
+    }
+    .hud-energy .unit.empty { 
+      background: url('/images/fulmine.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.35;
+      box-shadow: none;
+      width: 24px;
+      height: 24px;
+    }
+    
+    /* HUD: coins */
+    .hud-coins-container {
+      position: absolute;
+      left: 16px;
+      top: 80px;
+      pointer-events: none;
+      background: rgba(26, 26, 46, 0.85);
+      border-radius: 0;
+      padding: 10px 14px;
+      border: 2px solid #6080aa;
+      box-shadow: 0 0 15px rgba(112, 144, 192, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hud-coins {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #FFD700;
+      text-shadow: 1px 1px 0 #6080aa;
+      animation: coinGlow 1.5s ease-in-out infinite;
+    }
+    .hud-coins::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-image: url('/images/coin.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    @keyframes coinGlow {
+      0%, 100% { text-shadow: 1px 1px 0 #6080aa, 0 0 8px rgba(255, 215, 0, 0.3); }
+      50% { text-shadow: 1px 1px 0 #6080aa, 0 0 16px rgba(255, 215, 0, 0.6); }
+    }

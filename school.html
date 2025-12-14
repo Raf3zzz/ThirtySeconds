@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thirty Seconds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+  <div class="game-wrapper">
+    <canvas id="game"></canvas>
+    <div class="touch-controls" id="touch-controls">
+      <div class="dpad" id="dpad">
+        <div class="pad-empty"></div>
+        <button class="pad-btn" id="dpad-up">▲</button>
+        <div class="pad-empty"></div>
+        <button class="pad-btn" id="dpad-left">◀</button>
+        <button class="pad-btn dash-btn" id="dash-btn">!</button>
+        <button class="pad-btn" id="dpad-right">▶</button>
+        <div class="pad-empty"></div>
+        <button class="pad-btn" id="dpad-down">▼</button>
+        <div class="pad-empty"></div>
+      </div>
+      <button class="action-btn" id="action-btn">E</button>
+      <button class="move-btn" id="move-btn">R</button>
+    </div>
+    <div class="hotbar" id="hotbar">
+      <div class="slot" data-slot="0" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)"></div>
+      <div class="slot" data-slot="1" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)"></div>
+      <div class="slot" data-slot="2" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)"></div>
+      <div class="slot" data-slot="3" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)"></div>
+      <div class="slot" data-slot="4" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)"></div>
+    </div>
+    <div class="hotbar-name" id="hotbar-name" aria-hidden="true"></div>
+    <button class="inventory-btn" id="inventory-btn">I</button>
+    <div class="inventory-panel" id="inventory-panel" hidden>
+      <div class="inventory-card">
+        <div class="inventory-header">
+          <h3>Equipaggiamento</h3>
+          <button id="inventory-close">✕</button>
+        </div>
+        
+        <!-- SKIN & COSMETICI SECTION -->
+        <div class="skin-cosmetics-wrapper">
+          <!-- SKIN SECTION - VERTICALE A SINISTRA -->
+          <div class="skin-section">
+            <h4>Skin</h4>
+            <div class="skin-display" id="skin-display"></div>
+          </div>
+          
+          <!-- COSMETICI SECTION - A DESTRA DELLA SKIN -->
+          <div class="cosmetics-section">
+            <h4>Cosmetici</h4>
+            <div class="cosmetics-slots" id="cosmetics-slots">
+              <div class="cosmetic-slot" data-slot="0"></div>
+              <div class="cosmetic-slot" data-slot="1"></div>
+              <div class="cosmetic-slot" data-slot="2"></div>
+              <div class="cosmetic-slot" data-slot="3"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INVENTARIO SECTION (3 righe x 5 colonne) -->
+        <div class="inventory-section">
+          <h4>Inventario</h4>
+          <div class="inventory-name" id="inventory-name"></div>
+          <div class="inventory-grid" id="inventory-grid">
+            <div class="inv-slot" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)" data-slot="inv-0"></div>
+            <div class="inv-slot" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)" data-slot="inv-1"></div>
+            <div class="inv-slot" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)" data-slot="inv-2"></div>
+            <div class="inv-slot" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)" data-slot="inv-3"></div>
+            <div class="inv-slot" draggable="true" ondrop="onDrop(event)" ondragover="onDragOver(event)" ondragstart="onDragStart(event)" data-slot="inv-4"></div>
+          </div>
+        </div>
+
+        <!-- HOTBAR SECTION -->
+        <div class="hotbar-section">
+          <h4>Hotbar</h4>
+          <div class="hotbar-mini" id="hotbar-mini">
+            <button class="slot" data-slot="0">1</button>
+            <button class="slot" data-slot="1">2</button>
+            <button class="slot" data-slot="2">3</button>
+            <button class="slot" data-slot="3">4</button>
+            <button class="slot" data-slot="4">5</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hud-hearts-container"><div class="hud-hearts hud-row" id="hud-hearts"></div></div>
+    <div class="hud-coins-container"><div class="hud-coins" id="hud-coins"> 0</div></div>
+    <div class="hud-energy-container"><div class="hud-energy hud-row" id="hud-energy"></div></div>
+  </div>
+  <script src="js/school.js" defer></script>
+</body>
+</html>

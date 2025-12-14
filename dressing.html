@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camerino</title>
+</head>
+<body>
+<div class="page-container">
+  <button class="back-btn" id="back-btn">← Indietro</button>
+  
+  <div class="dressing-page">
+    <h1 class="dressing-title">CAMERINO</h1>
+    
+    <div class="carousel-container">
+      <div class="carousel-wrapper">
+        <div class="character-card">
+          <div class="character-avatar"><img src="../images/hero.png" alt="Sprite Personaggio 1"></div>
+          <p class="character-name">Personaggio 1</p>
+        </div>
+        <div class="character-card">
+          <div class="character-avatar"><img src="../images/hero2.png" alt="Sprite Personaggio 2"></div>
+          <p class="character-name">Personaggio 2</p>
+        </div>
+        <div class="character-card" aria-disabled="true" tabindex="-1">
+          <div class="character-avatar">⏳</div>
+          <p class="character-name">Coming soon</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="confirm-actions" style="display: flex; justify-content: center; margin-top: 1rem;">
+      <button class="glass-btn" id="confirm-btn">
+        <span class="btn-icon">✅</span>
+        <span>Conferma</span>
+      </button>
+    </div>
+  </div>
+</div>
+  <script src="js/dressing.js" defer></script>
+</body>
+</html>
