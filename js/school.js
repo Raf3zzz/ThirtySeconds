@@ -136,28 +136,28 @@
   // Coin sprite
   const coinImg = new Image();
   let coinImgLoaded = false;
-  coinImg.src = '/images/coin.png';
+  coinImg.src = '../coin.png';
   coinImg.onload = () => { coinImgLoaded = true; };
   coinImg.onerror = () => { coinImgLoaded = false; };
 
   // Box sprite (scatola)
   const boxImg = new Image();
   let boxImgLoaded = false;
-  boxImg.src = '/images/scatola.png';
+  boxImg.src = '../images/scatola.png';
   boxImg.onload = () => { boxImgLoaded = true; };
   boxImg.onerror = () => { boxImgLoaded = false; };
 
   // Chest sprite (baule)
   const chestImg = new Image();
   let chestImgLoaded = false;
-  chestImg.src = '/images/chest.png';
+  chestImg.src = '../images/chest.png';
   chestImg.onload = () => { chestImgLoaded = true; };
   chestImg.onerror = () => { chestImgLoaded = false; };
 
   // Chest open sprite
   const chestOpenImg = new Image();
   let chestOpenImgLoaded = false;
-  chestOpenImg.src = '/images/chest_open.png';
+  chestOpenImg.src = '../images/chest_open.png';
   chestOpenImg.onload = () => { chestOpenImgLoaded = true; };
   chestOpenImg.onerror = () => { chestOpenImgLoaded = false; };
 
@@ -171,10 +171,10 @@
 
   if (charIndex === 0) {
     // up -> hero1_up.png, down -> hero.png, left -> hero1_left.png, right -> hero1_right.png
-    preloadDir('up', '/images/hero1_up.png');
-    preloadDir('down', '/images/hero.png');
-    preloadDir('left', '/images/hero1_left.png');
-    preloadDir('right', '/images/hero1_right.png');
+    preloadDir('up', '../images/hero1_up.png');
+    preloadDir('down', '../images/hero.png');
+    preloadDir('left', '../images/hero1_left.png');
+    preloadDir('right', '../images/hero1_right.png');
   }
 
   let fallbackColor = charIndex === 1 ? '#6bb1ff' : '#ff6bb1';
