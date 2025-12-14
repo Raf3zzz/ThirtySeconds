@@ -110,7 +110,7 @@
   // Legge la selezione dal Camerino
   const idxStored = parseInt(localStorage.getItem('selectedCharacterIndex') || '0', 10);
   const charIndex = Number.isNaN(idxStored) ? 0 : Math.max(0, Math.min(1, idxStored));
-  const SPRITES = ['/images/hero.png', '/images/hero2.png'];
+  const SPRITES = ['https://raf3zzz.github.io/ThirtySeconds/images/hero.png', '/images/hero2.png'];
 
   const spriteImg = new Image();
   let hasSprite = false;
@@ -129,35 +129,35 @@
   // Item sprites
   const bookImg = new Image();
   let bookImgLoaded = false;
-  bookImg.src = '/images/book.png';
+  bookImg.src = 'https://raf3zzz.github.io/ThirtySeconds/images/book.png';
   bookImg.onload = () => { bookImgLoaded = true; };
   bookImg.onerror = () => { bookImgLoaded = false; };
 
   // Coin sprite
   const coinImg = new Image();
   let coinImgLoaded = false;
-  coinImg.src = '../coin.png';
+  coinImg.src = 'https://raf3zzz.github.io/ThirtySeconds/images/coin.png';
   coinImg.onload = () => { coinImgLoaded = true; };
   coinImg.onerror = () => { coinImgLoaded = false; };
 
   // Box sprite (scatola)
   const boxImg = new Image();
   let boxImgLoaded = false;
-  boxImg.src = '../images/scatola.png';
+  boxImg.src = 'https://raf3zzz.github.io/ThirtySeconds/images/scatola.png';
   boxImg.onload = () => { boxImgLoaded = true; };
   boxImg.onerror = () => { boxImgLoaded = false; };
 
   // Chest sprite (baule)
   const chestImg = new Image();
   let chestImgLoaded = false;
-  chestImg.src = '../images/chest.png';
+  chestImg.src = 'https://raf3zzz.github.io/ThirtySeconds/images/chest.png';
   chestImg.onload = () => { chestImgLoaded = true; };
   chestImg.onerror = () => { chestImgLoaded = false; };
 
   // Chest open sprite
   const chestOpenImg = new Image();
   let chestOpenImgLoaded = false;
-  chestOpenImg.src = '../images/chest_open.png';
+  chestOpenImg.src = 'https://raf3zzz.github.io/ThirtySeconds/images/chest_open.png';
   chestOpenImg.onload = () => { chestOpenImgLoaded = true; };
   chestOpenImg.onerror = () => { chestOpenImgLoaded = false; };
 
@@ -171,11 +171,11 @@
 
   if (charIndex === 0) {
     // up -> hero1_up.png, down -> hero.png, left -> hero1_left.png, right -> hero1_right.png
-    preloadDir('up', '../images/hero1_up.png');
-    preloadDir('down', '../images/hero.png');
-    preloadDir('left', '../images/hero1_left.png');
-    preloadDir('right', '../images/hero1_right.png');
-  }
+  preloadDir('up', 'https://raf3zzz.github.io/ThirtySeconds/images/hero1_up.png');
+  preloadDir('down', 'https://raf3zzz.github.io/ThirtySeconds/images/hero.png');
+  preloadDir('left', 'https://raf3zzz.github.io/ThirtySeconds/images/hero1_left.png');
+  preloadDir('right', 'https://raf3zzz.github.io/ThirtySeconds/images/hero1_right.png');
+}
 
   let fallbackColor = charIndex === 1 ? '#6bb1ff' : '#ff6bb1';
 
@@ -413,7 +413,7 @@
         wrap.className = 'icon';
         if (item.type === 'book' && bookImgLoaded) {
           const img = document.createElement('img');
-          img.src = '../images/book.png';
+          img.src = 'https://raf3zzz.github.io/ThirtySeconds/images/book.png';
           img.alt = 'book';
           wrap.appendChild(img);
         } else {
@@ -479,7 +479,7 @@
         // Aggiungi il contenuto dello slot (immagine o icona)
         if (item.type === 'book' && bookImgLoaded) {
           const img = document.createElement('img');
-          img.src = '/images/book.png';
+          img.src = 'https://raf3zzz.github.io/ThirtySeconds/images/book.png';
           img.alt = 'book';
           img.draggable = false; // Impedisci il trascinamento dell'immagine
           cell.appendChild(img);
